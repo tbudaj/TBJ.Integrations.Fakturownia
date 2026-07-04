@@ -1,5 +1,8 @@
 ﻿# TBJ.Integrations.Fakturownia
 
+[![build](https://github.com/tbudaj/TBJ.Integrations.Fakturownia/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/tbudaj/TBJ.Integrations.Fakturownia/actions/workflows/build-and-test.yml)
+[![NuGet](https://img.shields.io/nuget/v/TBJ.Integrations.Fakturownia)](https://www.nuget.org/packages/TBJ.Integrations.Fakturownia)
+
 Biblioteka klienta .NET 8, 9, 10 dla **Fakturownia.pl API** — wystawianie i zarządzanie fakturami online.
 
 Projekt jest wzorowany na `TBJ.Integrations.Shipping.*` i `TBJ.Integrations.MF.KSeF`. Dostarcza typowanych abstrakcji do komunikacji z Fakturownia API: faktury, kontrahenci, produkty, płatności, kategorie — z pełnym wsparciem wielotenantowości.
