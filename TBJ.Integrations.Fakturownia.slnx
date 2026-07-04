@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/TBJ.Integrations.Fakturownia/TBJ.Integrations.Fakturownia.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/TBJ.Integrations.Fakturownia.Tests/TBJ.Integrations.Fakturownia.Tests.csproj" />
+  </Folder>
+  <Folder Name="/examples/">
+    <Project Path="examples/TBJ.Integrations.Fakturownia.WebApi/TBJ.Integrations.Fakturownia.WebApi.csproj" />
+  </Folder>
+</Solution>
