@@ -249,7 +249,8 @@ Pola płatności w modelu `Invoice`:
 
 - `Paid` — kwota zapłacona (API zwraca ją jako string, np. `"0,00"` lub `"123.45"` — konwerter obsługuje oba formaty oraz `null`)
 - `PaidDate` — data zapłaty (YYYY-MM-DD), pusta gdy faktura nieopłacona
-- `PaymentUrl` — link do płatności online, dostępny tylko gdy na koncie włączone są płatności online
+- `PaymentUrl` — link do płatności online (gdy na koncie włączone są płatności online; zwracany także na liście)
+- `PaymentStatus` — status płatności wyliczany przez Fakturownię (`unpaid`, `paid`, `partial`)
 - `Token` — token publicznego podglądu: `https://{domena}.fakturownia.pl/invoice/{token}`, dopisek `.pdf` daje PDF
 
 #### Wystawienie nowej faktury

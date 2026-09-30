@@ -112,8 +112,11 @@ public sealed class Invoice
     /// <summary>Data zapłaty (YYYY-MM-DD), pusta gdy nieopłacona.</summary>
     public string? PaidDate { get; set; }
 
-    /// <summary>Link do płatności online (tylko gdy na koncie włączone są płatności online; zwykle w szczegółach faktury).</summary>
+    /// <summary>Link do płatności online (gdy na koncie włączone są płatności online; zwracany także na liście faktur).</summary>
     public string? PaymentUrl { get; set; }
+
+    /// <summary>Status płatności wyliczany przez Fakturownię (np. unpaid, paid, partial).</summary>
+    public string? PaymentStatus { get; set; }
 
     // === Rabat ===
 
