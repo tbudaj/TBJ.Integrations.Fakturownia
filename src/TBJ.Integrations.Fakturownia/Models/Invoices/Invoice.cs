@@ -1,4 +1,7 @@
-﻿namespace TBJ.Integrations.Fakturownia.Models.Invoices;
+﻿using System.Text.Json.Serialization;
+using TBJ.Integrations.Fakturownia.Internal;
+
+namespace TBJ.Integrations.Fakturownia.Models.Invoices;
 
 /// <summary>
 /// Faktura z Fakturownia API.
@@ -102,6 +105,19 @@ public sealed class Invoice
     /// <summary>Forma płatności (transfer, card, cash, etc.).</summary>
     public string? PaymentType { get; set; }
 
+    /// <summary>Kwota zapłacona (pole <c>paid</c>).</summary>
+    [JsonConverter(typeof(FlexibleDecimalConverter))]
+    public decimal? Paid { get; set; }
+
+    /// <summary>Data zapłaty (YYYY-MM-DD), pusta gdy nieopłacona.</summary>
+    public string? PaidDate { get; set; }
+
+    /// <summary>Link do płatności online (gdy na koncie włączone są płatności online; zwracany także na liście faktur).</summary>
+    public string? PaymentUrl { get; set; }
+
+    /// <summary>Status płatności wyliczany przez Fakturownię (np. unpaid, paid, partial).</summary>
+    public string? PaymentStatus { get; set; }
+
     // === Rabat ===
 
     /// <summary>Czy faktura zawiera rabat.</summary>
@@ -132,4 +148,7 @@ public sealed class Invoice
 
     /// <summary>Adres URL podglądu faktury.</summary>
     public string? ViewUrl { get; set; }
+
+    /// <summary>Token publicznego podglądu: <c>https://{domena}.fakturownia.pl/invoice/{token}</c> oraz <c>.pdf</c>.</summary>
+    public string? Token { get; set; }
 }

@@ -44,6 +44,12 @@ public sealed class InvoiceListFilter
     /// <summary>Filtr po nazwie nabywcy (wyszukiwanie częściowe).</summary>
     public string? BuyerName { get; set; }
 
+    /// <summary>
+    /// Sortowanie, np. <c>issue_date</c>, <c>payment_to</c>, <c>paid_date</c>, <c>number</c>, <c>updated_at</c>.
+    /// Sufiks <c>.desc</c> = malejąco (np. <c>issue_date.desc</c>).
+    /// </summary>
+    public string? Order { get; set; }
+
     /// <summary>Konwertuje filtry do słownika query params.</summary>
     internal Dictionary<string, string?> ToQueryParams()
     {
@@ -60,6 +66,7 @@ public sealed class InvoiceListFilter
         if (Kind is not null) dict["kind"] = Kind;
         if (Status is not null) dict["status"] = Status;
         if (BuyerName is not null) dict["buyer_name"] = BuyerName;
+        if (Order is not null) dict["order"] = Order;
 
         return dict;
     }
