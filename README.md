@@ -221,6 +221,8 @@ var faktury = await _fakturownia.Invoices.GetInvoicesAsync(
         Page    = 1,
         PerPage = 50,
         Status  = "paid",       // opcjonalnie: issued, sent, paid, partial, rejected
+        Order   = "issue_date.desc", // opcjonalne sortowanie: issue_date, payment_to, paid_date,
+                                     // number, updated_at; sufiks .desc = malejąco
     },
     auth: authTenanta
 );
@@ -233,11 +235,22 @@ var faktury = await _fakturownia.Invoices.GetInvoicesAsync(
 var faktura = await _fakturownia.Invoices.GetInvoiceAsync(123456, authTenanta);
 Console.WriteLine(faktura.Number);     // np. "FV 5/06/2026"
 Console.WriteLine(faktura.PriceGross); // kwota brutto
+Console.WriteLine(faktura.Paid);       // kwota zapłacona
+Console.WriteLine(faktura.PaidDate);   // data zapłaty (YYYY-MM-DD), pusta gdy nieopłacona
+Console.WriteLine(faktura.PaymentUrl); // link do płatności online (gdy włączone na koncie)
+Console.WriteLine(faktura.Token);      // token publicznego podglądu
 
 // Pobranie PDF
 byte[] pdf = await _fakturownia.Invoices.GetInvoicePdfAsync(123456, authTenanta);
 await File.WriteAllBytesAsync("faktura.pdf", pdf);
 ```
+
+Pola płatności w modelu `Invoice`:
+
+- `Paid` — kwota zapłacona (API zwraca ją jako string, np. `"0,00"` lub `"123.45"` — konwerter obsługuje oba formaty oraz `null`)
+- `PaidDate` — data zapłaty (YYYY-MM-DD), pusta gdy faktura nieopłacona
+- `PaymentUrl` — link do płatności online, dostępny tylko gdy na koncie włączone są płatności online
+- `Token` — token publicznego podglądu: `https://{domena}.fakturownia.pl/invoice/{token}`, dopisek `.pdf` daje PDF
 
 #### Wystawienie nowej faktury
 
