@@ -219,6 +219,7 @@ var faktury = await _fakturownia.Invoices.GetInvoicesAsync(
         PerPage = 50,
         Status  = "paid",       // opcjonalnie: issued, sent, paid, partial, rejected
     },
+    includePositions: true,     // opcjonalnie: dołącz pozycje faktur (include_positions=true)
     auth: authTenanta
 );
 ```
