@@ -16,8 +16,14 @@ public interface IInvoicesClient
     /// <summary>
     /// Pobiera listę faktur z zastosowaniem filtrów.
     /// </summary>
+    /// <param name="filter">Filtry listy (klient, okres, stronicowanie itp.).</param>
+    /// <param name="includePositions">Czy dołączyć pozycje faktur (<c>include_positions=true</c>) —
+    /// bez tego flagi pozycje zwraca tylko endpoint pojedynczej faktury.</param>
+    /// <param name="auth">Credentials tenanta lub null dla własnego konta.</param>
+    /// <param name="ct">Token anulowania.</param>
     Task<IReadOnlyList<Invoice>> GetInvoicesAsync(
         InvoiceListFilter? filter = null,
+        bool includePositions = false,
         FakturowniaAuthInfo? auth = null,
         CancellationToken ct = default);
 

@@ -20,10 +20,14 @@ internal sealed class InvoicesClient : IInvoicesClient
     /// <inheritdoc/>
     public Task<IReadOnlyList<Invoice>> GetInvoicesAsync(
         InvoiceListFilter? filter = null,
+        bool includePositions = false,
         FakturowniaAuthInfo? auth = null,
         CancellationToken ct = default)
     {
         var queryParams = (filter ?? new InvoiceListFilter()).ToQueryParams();
+        if (includePositions)
+            queryParams["include_positions"] = "true";
+
         return _http.GetAsync<IReadOnlyList<Invoice>>("invoices.json", auth, queryParams, ct);
     }
 

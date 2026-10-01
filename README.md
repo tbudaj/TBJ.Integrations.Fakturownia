@@ -224,6 +224,7 @@ var faktury = await _fakturownia.Invoices.GetInvoicesAsync(
         Order   = "issue_date.desc", // opcjonalne sortowanie: issue_date, payment_to, paid_date,
                                      // number, updated_at; sufiks .desc = malejąco
     },
+    includePositions: true,     // opcjonalnie: dołącz pozycje faktur (include_positions=true)
     auth: authTenanta
 );
 ```
